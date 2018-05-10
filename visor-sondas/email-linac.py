@@ -12,7 +12,7 @@ def send(integralBuffer, name):
 
     subject = 'Alerta Radiacao LNLS:' + '  ' + name
     mail_de = 'controle.supervisorio@gmail.com'
-    mail_para = 'aureo.carneiro@lnls.br' #adc remetente
+    mail_para = 'fernando.bacchim@lnls.br' #adc remetente
     mail_msgm50 = 'Subject: %s\n\n%s' % (subject,'A dose integral de Radiacao atingiu 50%')
     mail_msgm75 = 'Subject: %s\n\n%s' % (subject,'A dose integral de Radiacao atingiu 75%')
     mail_msgm100 = 'Subject: %s\n\n%s' % (subject,'A dose integral de Radiacao atingiu 100%')
@@ -42,21 +42,21 @@ while (1):
 
         # sonda THERMO
         integralThermo = PV('RAD:THERMO:DoseIntegral')
-        print(integralThermo.value)
+        #print(integralThermo.value)
         integralBufferThermo.append(integralThermo.value)
         if len(integralBufferThermo) >= 3:
             send(integralBufferThermo, 'Thermo')
 
         # sonda ELSE
         integralElse = PV('RAD:ELSE:DoseIntegral')
-        print(integralElse.value)
+        #print(integralElse.value)
         integralBufferElse.append(integralElse.value)
         if len(integralBufferElse) >= 3:
             send(integralBufferElse , 'ELSE')
 
         # sonda Berthold
         integralBerthold = PV('RAD:Berthold:DoseIntegral')
-        print(integralBerthold.value)
+        #print(integralBerthold.value)
         integralBufferBerthold.append(integralBerthold.value)
         if len(integralBufferBerthold) >= 3:
             send(integralBufferBerthold, 'Berthold')
